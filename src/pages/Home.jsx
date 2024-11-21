@@ -4,6 +4,7 @@ import {Input} from "@/components/ui/Input";
 import {Button} from "@/components/ui/Button";
 import { Check } from "lucide-react";
 import {Badge} from "@/components/ui/Badge";
+import { toast } from "sonner";
 
 export default function Home() {
   const {
@@ -16,6 +17,10 @@ export default function Home() {
   const [letter, setLetter] = useState("");
 
   const handleGuessLetter = () => {
+    if (guessedLetters.includes(letter)) {
+      toast("You already tried this letter", {type: "error"});
+      return setLetter("");
+    }
     setLetter("");
     tryLetter(letter);
   }

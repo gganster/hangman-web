@@ -39,7 +39,6 @@ export default function useHangman() {
     }
 
     //check if win
-    console.log("here");
     if (wordToFind.split("").every(letter => _guessedLetter.includes(letter))) {
       setGameStatus("won");
       navigate("/win");
