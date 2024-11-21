@@ -5,6 +5,7 @@ import {Button} from "@/components/ui/Button";
 import { Check } from "lucide-react";
 import {Badge} from "@/components/ui/Badge";
 import { toast } from "sonner";
+import Hangman from "../components/Hangman";
 
 export default function Home() {
   const {
@@ -27,6 +28,9 @@ export default function Home() {
 
   return (
     <div className="flex flex-col gap-8 justify-center items-center h-screen w-screen">
+      <div>
+        <Hangman count={10 - remainingAttempts} />
+      </div>
       <div className="">
         <h2 className="text-4xl">
           {filteredWordToDisplay}
