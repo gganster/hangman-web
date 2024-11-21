@@ -22,6 +22,12 @@ export default function useHangman() {
     const randomIndex = Math.floor(Math.random() * words.length);
     setWordToFind(words[randomIndex]);
 
+    //add 1 or two letters to guessedLetters to help the player
+    const randomWord = words[randomIndex];
+    const randomLetterIndex = Math.floor(Math.random() * randomWord.length);
+    const randomLetter = randomWord[randomLetterIndex];
+    setGuessedLetters([randomLetter]);
+
     console.debug("Word to find:", words[randomIndex]);
   }, [])
 
