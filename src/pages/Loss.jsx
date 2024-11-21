@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import {Badge} from "@/components/ui/Badge";
+import {Button} from "@/components/ui/Button";
 import Hangman from "../components/Hangman";
+import { Link } from "react-router-dom";
 
 export default function Loss() {
   const { word } = useParams();
@@ -14,6 +16,11 @@ export default function Loss() {
       <h3 className="">
         The word was: <Badge>{word}</Badge>
       </h3>
+      <Link to="/">
+        <Button variant="outline">
+          Play again
+        </Button>
+      </Link>
     </div>
   )
 }
