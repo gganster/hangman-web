@@ -1,7 +1,9 @@
 import {useState, useEffect, useMemo} from "react";
 import words from "../words";
+import { useNavigate } from "react-router-dom";
 
 export default function useHangman() {
+  const navigate = useNavigate();
   const [guessedLetters, setGuessedLetters] = useState([]);
   const [wordToFind, setWordToFind] = useState(null);
   const [gameStatus, setGameStatus] = useState("playing");
@@ -24,7 +26,8 @@ export default function useHangman() {
   }, [])
 
   const tryLetter = (letter) => {
-    setGuessedLetters([...guessedLetters, letter]);
+    const _guessedLetter = [...guessedLetters, letter];
+    setGuessedLetters(_guessedLetter);
 
     if (!wordToFind.includes(letter)) {
       setRemainingAttempts(remainingAttempts - 1);
@@ -32,7 +35,14 @@ export default function useHangman() {
 
     if (remainingAttempts - 1 === 0) {
       setGameStatus("lost");
-      //TODO
+      navigate(`/loss/${wordToFind}`);
+    }
+
+    //check if win
+    console.log("here");
+    if (wordToFind.split("").every(letter => _guessedLetter.includes(letter))) {
+      setGameStatus("won");
+      navigate("/win");
     }
   }
 
